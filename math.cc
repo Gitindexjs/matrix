@@ -3,16 +3,6 @@
 #include <vector>
 #include <math.h>
 
-
-std::vector<int> pUntil(int a) {
-    std::vector<int> p;
-    for(int i = 2; i < a; i++) {
-        for(int j = 0; j < p.size(); j++) {
-            if()
-        }
-    }
-}
-
 std::vector<int[2]> pFactors(int a) {
     std::vector<int[2]> factors;
     
