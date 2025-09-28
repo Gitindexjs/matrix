@@ -86,13 +86,14 @@ int det(std::vector<std::vector<int>> b) {
             s[j].erase(s[j].begin() + i);
         }
         // pow?
-        sum += (-1)**i*c*det(s);
+        sum += pow(-1, i)*c*det(s);
     }
     return sum;
 }
 
 int main() {
     std::cout << inv(-1, 2);
-
+    std::vector<std::vector<int>> a = {{1}};
+    std::cout << det(a);
     return 0;
 }
