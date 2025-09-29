@@ -93,6 +93,10 @@ int det(std::vector<std::vector<int>> b) {
     return sum;
 }
 
+int invM(std::vector<std::vector<int>> M){
+    // select non row or column
+}
+
 int main() {
     std::vector<std::vector<int>> a = {{1,2},{3,4}};
     std::cout << inv(det(a),2);
