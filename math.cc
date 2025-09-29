@@ -93,8 +93,20 @@ int det(std::vector<std::vector<int>> b) {
     return sum;
 }
 
-int invM(std::vector<std::vector<int>> M){
-    // select non row or column
+std::vector<std::vector<int>> invM(std::vector<std::vector<int>> M){
+    std::vector<std::vector<int>> r;
+    for(int i = 0; i < M.size(); i++){
+        if(M[i].size() != M.size()){
+            return {{}};
+        }
+    }
+    
+    for(int i = 0; i < M.size(); i++){
+        r.push_back(std::vector<int>(M.size()));
+        for(int j = 0; j < M[i].size(); j++){
+            
+        }
+    }
 }
 
 int main() {
