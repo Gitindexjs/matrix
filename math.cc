@@ -1,4 +1,3 @@
-// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <vector>
 #include <array>
@@ -44,12 +43,12 @@ bool isCoprime(int a, int b) {
 
 int inv(int a, int b) {
     // erroneous flag
-    if(a == 0 || b == 0 || !isCoprime(a, b)) {
-        return 0;
-    }
     b = abs(b);
     while(a < 0) {
         a += b;
+    }
+    if(a == 0 || b == 0 || !isCoprime(a, b)) {
+        return 0;
     }
     int c = 1;
     while((c*a)%b != 1){
@@ -69,11 +68,14 @@ int avg(std::vector<int> a) {
 int det(std::vector<std::vector<int>> b) {
     int sum = 0;
     int L = 0;
+    if(b.size() == 0) {
+        return 1;
+    }
     for(int i = 0; i < b.size(); i++){
         if(b[i].size() != b.size()) {
             return 0;
         }
-        if(avg(b[L]) >avg(b[i])) {
+        if(avg(b[L]) > avg(b[i])) {
             L = i;
         }
     }
@@ -92,8 +94,7 @@ int det(std::vector<std::vector<int>> b) {
 }
 
 int main() {
-    std::cout << inv(-1, 2);
-    std::vector<std::vector<int>> a = {{1}};
-    std::cout << det(a);
+    std::vector<std::vector<int>> a = {{1,2},{3,4}};
+    std::cout << inv(det(a),2);
     return 0;
 }
