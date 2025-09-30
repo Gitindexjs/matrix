@@ -65,6 +65,14 @@ int avg(std::vector<int> a) {
     return r/a.size();
 }
 
+std::vector<std::vector<int>> reduceM(std::vector<std::vector<int>> M, int x, int y){
+    M.erase(M.begin() + y);
+    for(int i = 0; i < M.size(); i++) {
+        M[i].erase(M[i].begin() + x);
+    }
+    return M;
+}
+
 int det(std::vector<std::vector<int>> b) {
     int sum = 0;
     int L = 0;
@@ -83,34 +91,43 @@ int det(std::vector<std::vector<int>> b) {
         // dubious
         int c = b[L][i];
         std::vector<std::vector<int>> s = b;
-        s.erase(s.begin() + L);
-        for(int j = 0; j < s.size(); j++) {
-            s[j].erase(s[j].begin() + i);
-        }
+        // s.erase(s.begin() + L);
+        // for(int j = 0; j < s.size(); j++) {
+        //     s[j].erase(s[j].begin() + i);
+        // }
         // pow?
-        sum += pow(-1, i)*c*det(s);
+        sum += pow(-1, i)*c*det(reduceM(s, i, L));
     }
     return sum;
 }
 
-std::vector<std::vector<int>> invM(std::vector<std::vector<int>> M){
-    std::vector<std::vector<int>> r;
+std::vector<std::vector<int>> invM(std::vector<std::vector<int>> M, int b){
     for(int i = 0; i < M.size(); i++){
         if(M[i].size() != M.size()){
             return {{}};
         }
     }
+    // if(det(M) % b == 0) {
+    //     return {{}};
+    // }
+    int mP = inv(det(M), b);
+    if(mP == 0) {
+        return {{}};
+    }
+    std::vector<std::vector<int>> r;
     
     for(int i = 0; i < M.size(); i++){
         r.push_back(std::vector<int>(M.size()));
         for(int j = 0; j < M[i].size(); j++){
-            
+            r[i].push_back(pow(-1, (i+j)%2) * det(reduceM(M, i, j)));
         }
     }
+    
+    return r;
 }
 
 int main() {
     std::vector<std::vector<int>> a = {{1,2},{3,4}};
-    std::cout << inv(det(a),2);
+    std::cout << det(a);
     return 0;
 }
